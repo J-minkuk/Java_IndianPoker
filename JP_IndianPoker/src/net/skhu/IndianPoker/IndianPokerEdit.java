@@ -36,8 +36,11 @@ public class IndianPokerEdit {
 		// Indian 시작
 		while(round <= 20) {
 			if(user.getCoin() < 1 || ai.getCoin() < 1) {
-				System.out.println("[ai코인: "+ai.getCoin()+"] [user코인: "+user.getCoin()+"]");
 				System.out.println("게임 종료");
+				System.out.println("[ai코인: "+ai.getCoin()+"] [user코인: "+user.getCoin()+"]");
+				if(ai.getCoin() > user.getCoin()) System.out.println("최종 결과: [ai 승]");
+				else if(ai.getCoin() < user.getCoin()) System.out.println("최종 결과: [user 승]");
+				else System.out.println("최종결과: 무승부");
 				break;
 			}
 			// user 선 배팅 판단 flag%2 == 0 (if)
@@ -56,7 +59,7 @@ public class IndianPokerEdit {
 					userBet = scan.nextInt();
 					userSum += userBet;
 					// ai 배팅 선택 (if)
-					if(ai.getChoice(flag) == 1) {
+					if(ai.getChoice() == 1) {
 						int aiBet = ai.betCoin();
 						aiSum += aiBet;
 						System.out.println("[ai가 배팅 코인: "+aiBet+"] [user가 배팅 코인: "+userBet+"]");
@@ -82,7 +85,7 @@ public class IndianPokerEdit {
 						// userSum이 더 큰 경우 (if)
 						addBet : if(userSum > aiSum) {
 							// ai 추가 배팅 선택 (if)
-							if(ai.getChoice(flag) == 1) {
+							if(ai.getChoice() == 1) {
 								int aiBetAgain = ai.betCoin();
 								aiSum += aiBetAgain;
 								System.out.println("[ai 추가배팅: "+aiBetAgain+"]");
@@ -210,7 +213,7 @@ public class IndianPokerEdit {
 				user.getCard(flag);	// ai가 배팅하기 위해 nowUser 최신화
 				System.out.println("[ai코인: "+ai.getCoin()+"] [user코인: "+user.getCoin()+"]");
 				// ai 초기 배팅 선택 (if)
-				if(ai.getChoice(flag) == 1) {
+				if(ai.getChoice() == 1) {
 					int aiBet = ai.betCoin();
 					aiSum += aiBet;
 					System.out.println("[ai 배팅코인: "+aiBet+"]");
@@ -228,7 +231,7 @@ public class IndianPokerEdit {
 							// userSum이 더 큰 경우 (if)
 							addBet2 : if(userSum > aiSum) {
 								// ai 추가 배팅 선택 (if)
-								if(ai.getChoice(flag) == 1) {
+								if(ai.getChoice() == 1) {
 									int aiBetAgain = ai.betCoin();
 									aiSum += aiBetAgain;
 									System.out.println("[ai 추가배팅: "+aiBetAgain+"]");
@@ -369,7 +372,13 @@ public class IndianPokerEdit {
 			// ai 선 배팅 판단 flag%2 == 1 (else) 끝
 		}
 		// Indian 끝
-		
+		if(round > 20) {
+			System.out.println("게임 종료");
+			System.out.println("[ai코인: "+ai.getCoin()+"] [user코인: "+user.getCoin()+"]");
+			if(ai.getCoin() > user.getCoin()) System.out.println("최종 결과: [ai 승]");
+			else if(ai.getCoin() < user.getCoin()) System.out.println("최종 결과: [user 승]");
+			else System.out.println("최종결과: 무승부");
+		}
 	}
 
 }
