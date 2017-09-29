@@ -3,7 +3,6 @@ package net.skhu.IndianPoker;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class Ai{
 	private int coin;
